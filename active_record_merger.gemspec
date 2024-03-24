@@ -3,37 +3,36 @@
 require_relative "lib/active_record_merger/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "active_record_merger"
+  spec.name    = "active_record_merger"
   spec.version = ActiveRecordMerger::VERSION
   spec.authors = ["Max Buslaev"]
-  spec.email = ["max@buslaev.net"]
+  spec.email   = ["max@buslaev.net"]
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
-  spec.license = "MIT"
+  spec.summary               = "A utility gem for merging ActiveRecord objects and their associated records with customizable logic."
+  spec.description           = "ActiveRecordMerger provides an extendable framework for merging ActiveRecord models, including complex scenarios involving associations, while ensuring data integrity and providing hooks for custom merge logic."
+  spec.homepage              = "https://github.com/austerlitz/active_record_merger"
+  spec.license               = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
-
-  spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["homepage_uri"]    = spec.homepage
+  spec.metadata["source_code_uri"] = "https://github.com/yourusername/active_record_merger"
+  spec.metadata["changelog_uri"]   = "https://github.com/yourusername/active_record_merger/blob/main/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = Dir.chdir(__dir__) do
+  spec.files         = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").reject do |f|
       (File.expand_path(f) == __FILE__) || f.start_with?(*%w[bin/ test/ spec/ features/ .git .circleci appveyor])
     end
   end
-  spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.bindir        = "exe"
+  spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
 
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
+  spec.add_dependency "activerecord", ">= 5.0"
+  spec.add_dependency "simple_command"
+
+  spec.add_development_dependency "rspec", "~> 3.10"
+  spec.add_development_dependency "pry", "~> 0.13.0"
 end
